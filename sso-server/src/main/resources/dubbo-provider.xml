@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd        http://dubbo.apache.org/schema/dubbo        http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="provider-app"  />
+    <!-- 记录失败注册和订阅请求，后台定时重试 -->
+    <dubbo:registry check="false" />
+    <!-- 设置 zookeeper 登录信息 -->
+    <!--<dubbo:registry username="admin" password="1234" />-->
+
+    <!-- 使用zookeeper广播注册中心暴露服务地址 -->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" />
+    <!-- zookeeper集群 -->
+    <!--<dubbo:registry address="zookeeper://10.20.153.10:2181?backup=10.20.153.11:2181,10.20.153.12:2181" />-->
+
+    <!--  设置 zookeeper 的根节点，不设置将使用无根树 -->
+    <!--<dubbo:registry group="dubbo2" />-->
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20880" />
+
+    <!-- 声明需要暴露的服务接口   -->
+    <dubbo:service interface="com.wy.sso.core.facade.SsoServiceFacade" ref="ssoServiceFacadeImpl"
+                   timeout="3000" retries="2" loadbalance="random" actives="0" group="wy" version="1.0.0"/>
+
+    <!-- 和本地bean一样实现服务 -->
+    <bean id="ssoServiceFacadeImpl" class="com.wy.sso.server.facade.impl.SsoServiceFacadeImpl" />
+</beans>

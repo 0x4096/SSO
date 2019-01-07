@@ -1,0 +1,1 @@
+单点登录,参考了 https://github.com/xuxueli/xxl-sso ,待完善

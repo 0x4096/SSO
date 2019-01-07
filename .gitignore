@@ -1,0 +1,13 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+
+/sso-core/sso-core/target
+/sso-core/sso-core-starter/target
+/sso-server/target
