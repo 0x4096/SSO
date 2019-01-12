@@ -29,6 +29,12 @@ public class RpcResult<T> implements Serializable {
      */
     private T data;
 
+
+    public RpcResult() {
+        this.success = true;
+        this.code = "200";
+    }
+
     public boolean isSuccess() {
         return success;
     }

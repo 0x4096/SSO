@@ -4,6 +4,9 @@ package com.wy.sso.server.facade.impl;
 import com.wy.sso.core.facade.RpcResult;
 import com.wy.sso.core.facade.SsoServiceFacade;
 import com.wy.sso.core.model.SsoUserBO;
+import com.wy.sso.core.util.CookieUtils;
+import com.wy.sso.server.constant.SsoServerConstants;
+import com.wy.sso.server.util.JedisUtils;
 import com.wy.sso.server.util.SsoUserLoginUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -30,6 +33,8 @@ public class SsoServiceFacadeImpl implements SsoServiceFacade {
 
         SsoUserBO ssoUserBO = SsoUserLoginUtils.loginCheck(sessionId);
         if(ssoUserBO != null){
+            /* 延迟登录用户数据过期时间 */
+            JedisUtils.expire(sessionId, SsoServerConstants.EXPIRE_TIME);
             rpcResult.setData(ssoUserBO);
             return rpcResult;
         }
