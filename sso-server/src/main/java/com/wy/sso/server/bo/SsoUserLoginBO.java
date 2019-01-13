@@ -25,7 +25,7 @@ public class SsoUserLoginBO {
     /**
      * 跳转链接
      */
-    private String redirectUrl;
+    private String redirectUri;
 
     public String getUsername() {
         return username;
@@ -51,11 +51,11 @@ public class SsoUserLoginBO {
         this.captcha = captcha;
     }
 
-    public String getRedirectUrl() {
-        return redirectUrl;
+    public String getRedirectUri() {
+        return redirectUri;
     }
 
-    public void setRedirectUrl(String redirectUrl) {
-        this.redirectUrl = redirectUrl;
+    public void setRedirectUri(String redirectUri) {
+        this.redirectUri = redirectUri;
     }
 }

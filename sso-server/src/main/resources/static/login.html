@@ -185,13 +185,13 @@
 			}
 
 
-			var redirectUrl = window.location.href;
-			redirectUrl = redirectUrl.substring(redirectUrl.indexOf('?') != -1 ? redirectUrl.indexOf('?')+14:0,redirectUrl.length);
+			var redirectUri = window.location.href;
+			redirectUri = redirectUri.substring(redirectUri.indexOf('?') != -1 ? redirectUri.indexOf('?')+14:0,redirectUri.length);
 
 			var data = {
 						"username":username,
 						"password":password,
-						"redirectUrl":redirectUrl,
+						"redirectUri":redirectUri,
 						"captcha":""
 					};
 

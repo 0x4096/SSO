@@ -23,7 +23,7 @@
 
     <!-- 声明需要暴露的服务接口   -->
     <dubbo:service interface="com.wy.sso.core.facade.SsoServiceFacade" ref="ssoServiceFacadeImpl"
-                   timeout="3000" retries="2" loadbalance="random" actives="0" group="wy" version="1.0.0"/>
+                   timeout="30000" retries="2" loadbalance="random" actives="0" group="wy" version="1.0.0"/>
 
     <!-- 和本地bean一样实现服务 -->
     <bean id="ssoServiceFacadeImpl" class="com.wy.sso.server.facade.impl.SsoServiceFacadeImpl" />

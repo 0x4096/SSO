@@ -68,6 +68,7 @@ public class CookieUtils {
 
     /**
      * 查询Cookie中指定key的value
+     *
      * @param request
      * @param key
      */
@@ -112,7 +113,7 @@ public class CookieUtils {
      * @param request
      */
     public static String getAppId(HttpServletRequest request){
-        return getValue(request, SsoCoreConstants.APP_CODE);
+        return getValue(request, SsoCoreConstants.APP_CODE_KEY);
     }
 
     /**

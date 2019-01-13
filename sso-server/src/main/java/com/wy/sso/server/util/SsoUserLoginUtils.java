@@ -24,19 +24,24 @@ public class SsoUserLoginUtils {
         if(StringUtils.isBlank(sessionId)){
             throw new NullPointerException("sessionId 不能为空!");
         }
+        /* 存入登录用户信息 */
         JedisUtils.setObjectValue(sessionId,ssoUserBO,SsoServerConstants.EXPIRE_TIME);
+        /* 根据用户码和用户名的hashCode作为key,sessionId作为value存入redis,用于检测用户是否多终端登录 */
+        JedisUtils.setStringValue("u-" + ssoUserBO.toString().hashCode(),sessionId,SsoServerConstants.EXPIRE_TIME);
     }
 
     /**
      * client logout
      *
      * @param sessionId
+     * @param ssoUserBO
      */
-    public static void logout(String sessionId) {
+    public static void logout(String sessionId, SsoUserBO ssoUserBO) {
         if(StringUtils.isBlank(sessionId)){
             return;
         }
         JedisUtils.del(sessionId);
+        JedisUtils.del( "u-" + ssoUserBO.toString().hashCode() );
     }
 
 

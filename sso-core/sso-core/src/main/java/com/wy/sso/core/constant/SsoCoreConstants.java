@@ -12,21 +12,31 @@ public class SsoCoreConstants {
      */
     public static String SSO_SERVER_URL = "";
 
+    /**
+     * 登录请求URI
+     */
+    public static String LOGIN_URI = "";
 
     /**
      * 退出登录请求URI
      */
-    public static final String LOGOUT_URI = "/logout";
+    public static String LOGOUT_URI = "";
 
     /**
      * 重定向地址
      */
-    public static final String REDIRECT_URL = "redirect_url";
+    public static final String REDIRECT_URI = "redirect_uri";
+
 
     /**
-     * 应用系统唯一代码
+     * 应用系统唯一代码KEY
      */
-    public static String APP_CODE = "";
+    public static final String APP_CODE_KEY = "APPCODE";
+
+    /**
+     * 应用系统唯一代码VALUE
+     */
+    public static String APP_CODE_VALUE = "";
 
 
     /**
@@ -37,11 +47,16 @@ public class SsoCoreConstants {
     /**
      * redirect参数
      */
-    public static final String REDIRECT_PARAMS = "?" + REDIRECT_URL + "=";
+    public static final String REDIRECT_PARAMS = "?" + REDIRECT_URI + "=";
 
     /**
      * WYSESSION参数
      */
     public static final String SESSIONID_PARAMS = "?" + SESSION_ID + "=";
+
+
+    public static final String DEFAULT_CHARSER = "UTF-8";
+
+
 
 }

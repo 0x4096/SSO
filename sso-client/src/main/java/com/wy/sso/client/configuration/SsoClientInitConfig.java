@@ -13,11 +13,17 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SsoClientInitConfig {
 
-    @Value("${wy.sso.client.ssoServerUrl}")
+    @Value("${wy.sso.server.ssoServerUrl}")
     private String ssoServerUrl;
 
     @Value("${wy.sso.client.appCode}")
     private String appCode;
+
+    @Value("${wy.sso.server.loginUri}")
+    private String loginUri;
+
+    @Value("${wy.sso.server.logoutUri}")
+    private String logoutUri;
 
     @Value("${wy.sso.client.includedPaths}")
     private String includedPaths;
@@ -27,7 +33,7 @@ public class SsoClientInitConfig {
 
     @Bean
     public SsoClientConfig ssoClientConfig(){
-        return new SsoClientConfig(ssoServerUrl,appCode,includedPaths,excludedPaths);
+        return new SsoClientConfig(ssoServerUrl,loginUri,logoutUri,appCode,includedPaths,excludedPaths);
     }
 
 }
