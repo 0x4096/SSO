@@ -5,14 +5,12 @@ import com.wy.sso.core.facade.RpcResult;
 import com.wy.sso.core.facade.SsoServiceFacade;
 import com.wy.sso.core.model.SsoUserBO;
 import com.wy.sso.core.util.CookieUtils;
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URLDecoder;
@@ -32,11 +30,11 @@ public class SsoLoginInterceptor implements HandlerInterceptor {
     private SsoServiceFacade ssoServiceFacade;
 
 
-    public SsoLoginInterceptor(String ssoServerUrl, String loginUri, String logoutUri, String appCode, SsoServiceFacade ssoServiceFacade){
+    public SsoLoginInterceptor(String ssoServerUrl, String loginUri, String logoutUri, String appId, SsoServiceFacade ssoServiceFacade){
         SsoCoreConstants.SSO_SERVER_URL = ssoServerUrl;
         SsoCoreConstants.LOGIN_URI = loginUri;
         SsoCoreConstants.LOGOUT_URI = logoutUri;
-        SsoCoreConstants.APP_CODE_VALUE = appCode;
+        SsoCoreConstants.APP_ID_VALUE = appId;
         this.ssoServiceFacade = ssoServiceFacade;
         LOGGER.info("SsoLoginInterceptor init success!");
     }
@@ -102,7 +100,7 @@ public class SsoLoginInterceptor implements HandlerInterceptor {
         if( sessionId != null ){
             /* 设置cookie */
             CookieUtils.set(response, SsoCoreConstants.SESSION_ID, sessionId);
-            CookieUtils.set(response, SsoCoreConstants.APP_CODE_KEY, SsoCoreConstants.APP_CODE_VALUE);
+            CookieUtils.set(response, SsoCoreConstants.APP_ID_KEY, SsoCoreConstants.APP_ID_VALUE);
             /* 重定向到来的时候的页面 */
             redirectUrl = URLDecoder.decode(redirectUrl,SsoCoreConstants.DEFAULT_CHARSER);
             response.sendRedirect(redirectUrl);

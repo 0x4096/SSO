@@ -2,6 +2,7 @@ package com.wy.sso.core.configuration;
 
 import com.wy.sso.core.facade.SsoServiceFacade;
 import com.wy.sso.core.interceptor.SsoLoginInterceptor;
+import com.wy.sso.core.interceptor.SsoLoginInterceptorProperties;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -19,7 +20,7 @@ public class SsoClientConfig implements WebMvcConfigurer {
     /**
      * 单点登录登录服务端地址
      */
-    private String ssoServerUrl;
+    private String serverUrl;
 
     /**
      * 登录操作URI
@@ -32,9 +33,9 @@ public class SsoClientConfig implements WebMvcConfigurer {
     private String logoutUri;
 
     /**
-     * 应用系统码
+     * 应用系统ID
      */
-    private String appCode;
+    private String appId;
 
     /**
      * 拦截器拦截路径
@@ -46,17 +47,16 @@ public class SsoClientConfig implements WebMvcConfigurer {
      */
     private String excludedPaths;
 
-
-    @Resource
     private SsoServiceFacade ssoServiceFacade;
 
-    public SsoClientConfig(String ssoServerUrl, String loginUri, String logoutUri, String appCode, String includedPaths, String excludedPaths) {
-        this.ssoServerUrl = ssoServerUrl;
-        this.loginUri = loginUri;
-        this.logoutUri = logoutUri;
-        this.appCode = appCode;
-        this.includedPaths = includedPaths;
-        this.excludedPaths = excludedPaths;
+    public SsoClientConfig(SsoLoginInterceptorProperties properties, SsoServiceFacade ssoServiceFacade) {
+        this.serverUrl = properties.getServerUrl();
+        this.loginUri = properties.getLoginUri();
+        this.logoutUri = properties.getLogoutUri();
+        this.appId = properties.getAppId();
+        this.includedPaths = properties.getIncludedPaths();
+        this.excludedPaths = properties.getExcludedPaths();
+        this.ssoServiceFacade = ssoServiceFacade;
     }
 
 
@@ -69,7 +69,7 @@ public class SsoClientConfig implements WebMvcConfigurer {
      */
     @Bean("ssoLoginInterceptor")
     public SsoLoginInterceptor ssoLoginInterceptor(){
-        return new SsoLoginInterceptor(ssoServerUrl, loginUri, logoutUri, appCode, ssoServiceFacade);
+        return new SsoLoginInterceptor(serverUrl, loginUri, logoutUri, appId, ssoServiceFacade);
     }
 
     @Override

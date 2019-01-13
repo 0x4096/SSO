@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.wy.sso.core.autoconfigure.SsoClientAutoConfiguration
+
+org.springframework.context.ApplicationListener=\
+com.wy.sso.core.listener.WelcomeLogoApplicationListener

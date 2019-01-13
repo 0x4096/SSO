@@ -32,9 +32,16 @@
 
 
         <!-- SSO-CORE -->
+        <!--<dependency>-->
+            <!--<groupId>com.wy.sso.core</groupId>-->
+            <!--<artifactId>sso-core</artifactId>-->
+            <!--<version>1.0.0</version>-->
+        <!--</dependency>-->
+
+        <!-- 自动配置化SSO-CORE 与上面那个二选一 -->
         <dependency>
             <groupId>com.wy.sso.core</groupId>
-            <artifactId>sso-core</artifactId>
+            <artifactId>sso-core-starter</artifactId>
             <version>1.0.0</version>
         </dependency>
 

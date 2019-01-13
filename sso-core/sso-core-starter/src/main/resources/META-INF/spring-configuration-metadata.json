@@ -1,0 +1,49 @@
+{
+  "hints": [],
+  "groups": [],
+  "properties": [
+    {
+      "sourceType": "com.wy.sso.core.config.ApplicationConfig",
+      "name": "wy.sso.client.enable",
+      "type": "java.lang.Boolean",
+      "description":"[必填]是否启用单点登录拦截器,默认true",
+      "defaultValue": true
+    },
+    {
+      "sourceType": "com.wy.sso.core.config.ApplicationConfig",
+      "name": "wy.sso.server.serverUrl",
+      "type": "java.lang.String",
+      "description":"[必填]单点登录服务中心地址"
+    },
+    {
+      "sourceType": "com.wy.sso.core.config.ApplicationConfig",
+      "name": "wy.sso.server.loginUri",
+      "type": "java.lang.String",
+      "description":"[必填]SSO服务登录URI"
+    },
+    {
+      "sourceType": "com.wy.sso.core.config.ApplicationConfig",
+      "name": "wy.sso.server.logoutUri",
+      "type": "java.lang.String",
+      "description":"[必填]SSO服务登出URI"
+    },
+    {
+      "sourceType": "com.wy.sso.core.config.ApplicationConfig",
+      "name": "wy.sso.client.appId",
+      "type": "java.lang.String",
+      "description":"[必填]当前应用系统Id"
+    },
+    {
+      "sourceType": "com.wy.sso.core.config.ApplicationConfig",
+      "name": "wy.sso.client.excludedPaths",
+      "type": "java.lang.String",
+      "description":"排除拦截路径,多个路径请使用英文逗号隔开!默认为/**"
+    },
+    {
+      "sourceType": "com.wy.sso.core.config.ApplicationConfig",
+      "name": "wy.sso.client.includedPaths",
+      "type": "java.lang.String",
+      "description":"需要拦截路径,多个路径请使用英文逗号隔开!"
+    }
+  ]
+}

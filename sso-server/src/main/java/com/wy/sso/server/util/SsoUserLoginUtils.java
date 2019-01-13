@@ -27,7 +27,7 @@ public class SsoUserLoginUtils {
         /* 存入登录用户信息 */
         JedisUtils.setObjectValue(sessionId,ssoUserBO,SsoServerConstants.EXPIRE_TIME);
         /* 根据用户码和用户名的hashCode作为key,sessionId作为value存入redis,用于检测用户是否多终端登录 */
-        JedisUtils.setStringValue("u-" + ssoUserBO.toString().hashCode(),sessionId,SsoServerConstants.EXPIRE_TIME);
+        JedisUtils.setStringValue(SsoServerConstants.U_PREFIX + ssoUserBO.toString().hashCode(),sessionId,SsoServerConstants.EXPIRE_TIME);
     }
 
     /**
@@ -41,7 +41,7 @@ public class SsoUserLoginUtils {
             return;
         }
         JedisUtils.del(sessionId);
-        JedisUtils.del( "u-" + ssoUserBO.toString().hashCode() );
+        JedisUtils.del( SsoServerConstants.U_PREFIX + ssoUserBO.toString().hashCode() );
     }
 
 

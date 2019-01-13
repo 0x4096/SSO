@@ -4,6 +4,7 @@ import com.wy.sso.core.constant.SsoCoreConstants;
 import com.wy.sso.core.model.SsoUserBO;
 import com.wy.sso.core.util.CookieUtils;
 import com.wy.sso.server.bo.SsoUserLoginBO;
+import com.wy.sso.server.constant.SsoServerConstants;
 import com.wy.sso.server.result.ResponseWrapper;
 import com.wy.sso.server.util.JedisUtils;
 import com.wy.sso.server.util.SsoUserLoginUtils;
@@ -40,12 +41,12 @@ public class SsoServerController {
 
         String redirectUri = request.getRequestURI();
 
+
         SsoUserBO ssoUserBO = SsoUserLoginUtils.loginCheck(CookieUtils.getSessionId(request));
+        /*如果已经登录了,则跳转 */
         if(ssoUserBO != null){
-
-
+            return "redictre:"+redirectUri;
         }
-
 
 
         return "login.html";
@@ -85,7 +86,7 @@ public class SsoServerController {
 
         //根据用户码和用户名的hashCode作为key,sessionId作为value存入redis,用于检测用户是否多终端登录
 
-        String redisSessionId = JedisUtils.getStringValue("u-" + ssoUserBO.toString().hashCode());
+        String redisSessionId = JedisUtils.getStringValue(SsoServerConstants.U_PREFIX + ssoUserBO.toString().hashCode());
         /* 不为空说明已经在其他终端登录了 */
         if(StringUtils.isNotBlank(redisSessionId)){
             /* 清除登录信息 */

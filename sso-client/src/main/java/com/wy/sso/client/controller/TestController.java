@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * @author: peng.zhup
+ * @author: 0x4096.peng@gmail.com
  * @date: 2019/1/12
  * @instructions: 测试携带参数的HTTP请求
  */
@@ -25,20 +25,14 @@ public class TestController {
         while(iterator.hasNext()){
             Map.Entry<String, String[]> entry = iterator.next();
             if(i == 0){
-                sb.append("?"+entry.getKey()+"=");
                 for(int j=0,length=entry.getValue().length;j<length;j++){
                     if(j == 0){
-                        sb.append(entry.getValue()[j]);
+                        sb.append( entry.getKey() +"=" + entry.getValue()[j]);
                     }else{
-                        sb.append("&"+entry.getKey()+"="+entry.getValue()[j]);
+                        sb.append("&" + entry.getKey() + "=" + entry.getValue()[j]);
                     }
                 }
-            }else{
-                for(int j=0,length=entry.getValue().length;j<length;j++){
-                    sb.append("&"+entry.getKey()+"="+entry.getValue()[j]);
-                }
             }
-            i++;
         }
         return sb.toString();
     }

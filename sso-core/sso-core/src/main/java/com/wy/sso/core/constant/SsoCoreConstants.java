@@ -31,12 +31,12 @@ public class SsoCoreConstants {
     /**
      * 应用系统唯一代码KEY
      */
-    public static final String APP_CODE_KEY = "APPCODE";
+    public static final String APP_ID_KEY = "APPCODE";
 
     /**
      * 应用系统唯一代码VALUE
      */
-    public static String APP_CODE_VALUE = "";
+    public static String APP_ID_VALUE = "";
 
 
     /**

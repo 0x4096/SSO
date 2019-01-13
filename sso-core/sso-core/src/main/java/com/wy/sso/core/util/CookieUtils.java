@@ -113,7 +113,7 @@ public class CookieUtils {
      * @param request
      */
     public static String getAppId(HttpServletRequest request){
-        return getValue(request, SsoCoreConstants.APP_CODE_KEY);
+        return getValue(request, SsoCoreConstants.APP_ID_KEY);
     }
 
     /**
